@@ -175,19 +175,19 @@ If the outcome of the command is 'Verified OK', you have the confirmation that t
 
 # License and Copyrights
 
-*protected-digital-identity*
+*protected-digital-identity* <br />
 CC BY-NC-SA - Nils Hamel
 
 # Requirements
 
 In order to create and protect a digital identity, you will need the following tools :
 
-    * At least one active email address
-    * [OpenSSL](https://www.openssl.org) library and tools
-    * An SHA-256 computation tool
+* At least one active email address
+* [OpenSSL](https://www.openssl.org) library and tools
+* An SHA-256 computation tool
 
 It is recommended to use a password manager that allows to import and encrypt files along with your passwords such as :
 
-    * [KeepassXC](https://keepassxc.org)
+* [KeepassXC](https://keepassxc.org)
 
 Of course, you will also need a bit of motivation.
