@@ -20,19 +20,19 @@ In the first place, the email address are not reliable to determine our digital 
 
 This solution propose to replace your email address by a simple string as your digital identity : your digital name. This string rely on the following information :
 
-    * First name(s)
-    * Last name(s)
-    * Date of birth
-    * The state/region/canton of birth
-    * The country of birth
+ * First name(s)
+ * Last name(s)
+ * Date of birth
+ * The state/region/canton of birth
+ * The country of birth
 
 For example :
 
-    * Guillaume Jean-Baptiste
-    * Le Gentil
-    * September 12, 1725
-    * Normandie
-    * France
+ * Guillaume Jean-Baptiste
+ * Le Gentil
+ * September 12, 1725
+ * Normandie
+ * France
 
 The proposed solution tries to minimize the exposition of these information as they are still, unfortunately, used by entities to check you identity. The digital name starts by contracting the previous information as follows :
 
@@ -175,7 +175,7 @@ If the outcome of the command is 'Verified OK', you have the confirmation that t
 
 # License and Copyrights
 
-*protected-digital-identity* <br />
+**protected-digital-identity** <br />
 CC BY-NC-SA - Nils Hamel
 
 # Requirements
