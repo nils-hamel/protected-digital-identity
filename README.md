@@ -8,7 +8,7 @@ In addition, taking the example of Switzerland, projects of digital identities a
 
 This preliminary documents proposes a solution that does not rely on any central authority to ensure the protection of our digital identity. You are welcomed to contribute to this proposition.
 
-> The proposed solution is currently formulated in term of commands used in the context of a UNIX-like system.
+The proposed solution is currently formulated in term of commands used in the context of a UNIX-like system.
 
 # Context
 
@@ -121,6 +121,8 @@ Your secret key is then the only secret element you have to take care of - with 
 
 > For the rest of the documents, trying to keep things clear, the 'I' (the writer) refers to the person trying to protect its digital identity while the 'you' (the reader) refers to the person that try to verify 'my' digital identity : I have a digital identity that I claim and, as you are not convinced, you want to verify that I am the person able to claim that identity.
 
+The verification takes place as you recieved an email from me, providing my public key, information on my digital identity and the list of my active email addresses. The verification is required if you do not trust my digitial identity.
+
 Two verification processes are proposed here, a simple one and a more reliable one that takes some additionnal efforts.
 
 ## Verification : Simple Procedure
@@ -133,9 +135,9 @@ that creates a 32-bytes file named 'random-file.org'. You then use my public key
 
     $ openssl rsautl -encrypt -inkey my_public.pem -pubin -in random-file -out random-file.enc
 
-wich produces the flie 'random-file.enc'. You then randomly choose one of my active email address - that I provided you - to send me the encrypted random file.
+wich produces the flie 'random-file.enc'. You then randomly choose one of my active email address to send me the encrypted random file.
 
-Because its encrypted with my public key, my private key (my_private.pem) is the only one able to decrypt it, that I do using the command (UNIX-like) :
+Because its encrypted with my public key, my private key (my_private.pem) is the only one able to decrypt it. I then decrypt it using the command (UNIX-like) :
 
     $ openssl rsautl -decrypt -inkey my_private.pem -in random-file.enc -out random-file.dec
 
@@ -149,7 +151,7 @@ creating the signature file named 'random-file.sig'. I then send you, choosing m
 
 If the outcome of the command is 'Verified OK', the verification is a success, otherwise, there is someone between us.
 
-Summary :
+Summary of the procedure :
 
 * You create a 32-bytes random file and encrypt it with my public key
 * You randomly choose one of my active email address to send me the encrypted random file
@@ -158,11 +160,29 @@ Summary :
 * I randomly choose one of my active email address to send you the signature
 * You check the signature with my public key and your original random file
 
-> Note : it is important that the random file remains secret during the procedure and to delete it after in order to avoid to use it again. In addition, 32-bytes long random file is a reasonable value under which you should not go - but keep it sufficiantly small depending on the size of your RSA keys.
+Notes : it is important that the random file remains secret during the procedure and to delete it after in order to avoid to use it again. In addition, 32-bytes long random file is a reasonable value under which you should not go - but keep it sufficiantly small depending on the size of your RSA keys.
 
 ## Verification : Sneaky Procedure
 
-...
+This second verification procedure, more complicated for someone in the middle of us, is a variation of the first one and works almost the same. The only difference is in the usage of email addresses for the verification.
+
+In the first procedure, you randomly choose one of my active email address to send my your encrypted random file. In this procedure, instead of using your email address to send my the encrypted file, you create and random and temporary email address - using the available service on the web - and use it to send me the encrypted file.
+
+In the first procedure, I choose one of my active email address to send you the signature of the random file I decrypted and signed with my private key. In this procedure, I also use a random temporary email address to send you back the signature on your original address email.
+
+The rest of the procedure remains the same.
+
+Summary of the procedure :
+
+* You create a 32-bytes random file and encrypt it with my public key
+* You create a random and temporary email address
+* You randomly choose one of my active email address to send me the encrypted random file using your temporary address
+* I decrypt the file using my private key
+* I sign the decrypted random file with my private key
+* I create and random and temporary email address to send you the signature
+* You check the signature with my public key and your original random file
+
+The notes made on the first procdure apply for this second procedure.
 
 # License and Copyrights
 
